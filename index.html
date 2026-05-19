@@ -1,461 +1,153 @@
-   <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Frutería Roger y Mari</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
-
-body{
-    background:#e9e9e9;
-    display:flex;
-    justify-content:center;
-    padding:20px;
-}
-
-.app{
-    width:390px;
-    background:white;
-
-    min-height:100vh;
-    border-radius:30px;
-    overflow:hidden;
-    box-shadow:0 5px 20px rgba(0,0,0,0.15);
-}
-
-/* LOGIN */
-
-.login{
-    padding:30px;
-}
-
-.logo{
-    width:90px;
-    height:90px;
-    background:#00c83a;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    font-size:40px;
-    margin:40px auto 20px;
-}
-
-.login h1{
-    text-align:center;
-    font-size:38px;
-    margin-bottom:10px;
-}
-
-.subtitle{
-    text-align:center;
-    color:#666;
-    margin-bottom:40px;
-}
-
-.input-group{
-    margin-bottom:20px;
-}
-
-.input-group label{
-    display:block;
-    margin-bottom:10px;
-    font-weight:bold;
-}
-
-.input-group input{
-    width:100%;
-    padding:18px;
-    border-radius:15px;
-    border:2px solid #ddd;
-    font-size:16px;
-}
-
-.extra{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-    font-size:14px;
-}
-
-.extra a{
-    color:#00c83a;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.btn{
-    width:100%;
-    padding:18px;
-    border:none;
-    border-radius:15px;
-    background:#00c83a;
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* HEADER */
-
-.header{
-    background:#00c83a;
-    color:white;
-    padding:25px;
-}
-
-.header h2{
-    font-size:32px;
-}
-
-.header p{
-    margin-top:5px;
-    font-size:18px;
-}
-
-/* TABS */
-
-.tabs{
-    display:flex;
-    background:#f1f1f1;
-    margin:20px;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.tab{
-    flex:1;
-    padding:15px;
-    text-align:center;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.tab.active{
-    background:white;
-}
-
-/* CATEGORÍAS */
-
-.categories{
-    display:flex;
-    flex-wrap:wrap;
-    gap:15px;
-    padding:0 20px 20px;
-}
-
-.category{
-    background:#f5f5f5;
-    padding:15px 28px;
-    border-radius:15px;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.category.active{
-    background:#00c83a;
-    color:white;
-    font-weight:bold;
-}
-
-/* PRODUCTOS */
-
-.products{
-    padding:20px;
-}
-
-.card{
-    border:1px solid #ececec;
-    border-radius:25px;
-    overflow:hidden;
-    margin-bottom:30px;
-    background:white;
-}
-
-.card img{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-}
-
-.card-content{
-    padding:20px;
-}
-
-.card h3{
-    font-size:34px;
-    margin-bottom:15px;
-}
-
-.price{
-    color:#00c83a;
-    font-size:42px;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-.add-btn{
-    width:100%;
-    padding:18px;
-    border:none;
-    border-radius:15px;
-    background:#00c83a;
-    color:white;
-    font-size:22px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* HISTORIAL */
-
-.history{
-    padding:20px;
-}
-
-.box{
-    border:1px solid #e7e7e7;
-    border-radius:25px;
-    padding:25px;
-    margin-bottom:25px;
-}
-
-.box h4{
-    font-size:28px;
-    margin-bottom:30px;
-}
-
-.money{
-    color:#00c83a;
-    font-size:45px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
-
-.small{
-    color:#666;
-    font-size:20px;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="app">
-
-    <!-- LOGIN -->
-
-    <section class="login">
-
-        <div class="logo">🏪</div>
-
-        <h1>Frutería Roger y Mari</h1>
-
-        <p class="subtitle">
-            Ingresa al sistema de Punto de Venta
-        </p>
-
-        <div class="input-group">
-            <label>Correo electrónico</label>
-            <input type="email" placeholder="admin@rogerymari.com">
-        </div>
-
-        <div class="input-group">
-            <label>Contraseña</label>
-            <input type="password" placeholder="********">
-        </div>
-
-        <div class="extra">
-            <label>
-                <input type="checkbox">
-                Recordarme
-            </label>
-
-            <a href="#">
-                ¿Olvidaste tu contraseña?
-            </a>
-        </div>
-
-        <button class="btn">
-            Iniciar Sesión →
-        </button>
-
-    </section>
-
-    <!-- HEADER -->
-
-    <div class="header">
-        <h2>Mari</h2>
-        <p>Sistema de Punto de Venta</p>
-    </div>
-
-    <!-- TABS -->
-
-    <div class="tabs">
-        <div class="tab active">🛒 Punto de Venta</div>
-        <div class="tab">📊 Historial</div>
-    </div>
-
-    <!-- CATEGORÍAS -->
-
-    <div class="categories">
-        <div class="category">Todos</div>
-        <div class="category">Frutas</div>
-        <div class="category">Helados</div>
-        <div class="category active">Batidos</div>
-        <div class="category">Queques</div>
-    </div>
-
-    <!-- PRODUCTOS -->
-
-    <div class="products">
-
-        <!-- FRESAS -->
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="card-content">
-
-                <h3>Fresas</h3>
-
-                <div class="price">₡2 500</div>
-
-                <button class="add-btn">
-                    + Agregar
-                </button>
-
-            </div>
-        </div>
-
-        <!-- HELADO -->
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="card-content">
-
-                <h3>Helado de Menta Chips</h3>
-
-                <div class="price">₡1 500</div>
-
-                <button class="add-btn">
-                    + Agregar
-                </button>
-
-            </div>
-        </div>
-
-        <!-- QUEQUE -->
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="card-content">
-
-                <h3>Queque de Chocolate</h3>
-
-                <div class="price">₡3 500</div>
-
-                <button class="add-btn">
-                    + Agregar
-                </button>
-
-            </div>
-        </div>
-
-        <!-- BATIDO DE FRESA -->
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="card-content">
-
-                <h3>Batido de Fresa</h3>
-
-                <div class="price">₡2 500</div>
-
-                <button class="add-btn">
-                    + Agregar
-                </button>
-
-            </div>
-        </div>
-
-        <!-- BATIDO VERDE -->
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?q=80&w=1200&auto=format&fit=crop">
-
-            <div class="card-content">
-
-                <h3>Batido Verde</h3>
-
-                <div class="price">₡3 000</div>
-
-                <button class="add-btn">
-                    + Agregar
-                </button>
-
-            </div>
-        </div>
-
-    </div>
-
-    <!-- HISTORIAL -->
-
-    <div class="history">
-
-        <div class="box">
-
-            <h4>Ventas de Hoy</h4>
-
-            <div class="money">₡0</div>
-
-            <div class="small">
-                0 transacciones
-            </div>
-
-        </div>
-
-        <div class="box">
-
-            <h4>Total General</h4>
-
-            <div class="money">₡0</div>
-
-            <div class="small">
-                0 ventas totales
-            </div>
-
-        </div>
-
-        <div class="box">
-
-            <h4>Promedio por Venta</h4>
-
-            <div class="money">₡0</div>
-
-            <div class="small">
-                Ticket promedio
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+    </div> <!-- Cierre de .app -->
+
+<script>
+// --- CONFIGURACIÓN DE ELEMENTOS ---
+const loginSection = document.querySelector('.login');
+const headerElement = document.querySelector('.header');
+const tabsElement = document.querySelector('.tabs');
+const categoriesElement = document.querySelector('.categories');
+const productsSection = document.querySelector('.products');
+const historySection = document.querySelector('.history');
+
+const loginBtn = document.querySelector('.btn');
+const emailInput = document.querySelector('.input-group input[type="email"]');
+const passwordInput = document.querySelector('.input-group input[type="password"]');
+const forgotPasswordLink = document.querySelector('.extra a');
+
+const tabs = document.querySelectorAll('.tab');
+const categories = document.querySelectorAll('.category');
+const addButtons = document.querySelectorAll('.add-btn');
+
+// --- ESTADO DE LA APLICACIÓN ---
+let ventasHoy = 0;
+let transacciones = 0;
+
+// Ocultar la app principal al inicio (Solo se ve el login)
+headerElement.style.display = 'none';
+tabsElement.style.display = 'none';
+categoriesElement.style.display = 'none';
+productsSection.style.display = 'none';
+historySection.style.display = 'none';
+
+// --- 1. SCRIPT DE INICIO DE SESIÓN ---
+loginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // Validación básica (puedes cambiar las credenciales aquí)
+    if (emailInput.value.trim() === 'admin@rogerymari.com' && passwordInput.value === '123456') {
+        alert('¡Bienvenido al sistema!');
+        
+        // Transición de pantallas
+        loginSection.style.display = 'none';
+        headerElement.style.display = 'block';
+        tabsElement.style.display = 'flex';
+        categoriesElement.style.display = 'flex';
+        productsSection.style.display = 'block';
+    } else {
+        alert('Correo o contraseña incorrectos. Usa admin@rogerymari.com y 123456');
+    }
+});
+
+// Recuperar contraseña
+forgotPasswordLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = prompt('Por favor, ingresa tu correo electrónico para enviarte un enlace de recuperación:');
+    if (email) {
+        alert(`Se ha enviado un correo de recuperación a: ${email}`);
+    }
+});
+
+// --- 2. SCRIPT DE NAVEGACIÓN (TABS) ---
+tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+        // Cambiar pestaña activa de forma visual
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Alternar vistas entre Punto de Venta e Historial
+        if (index === 0) { // Punto de Venta
+            categoriesElement.style.display = 'flex';
+            productsSection.style.display = 'block';
+            historySection.style.display = 'none';
+        } else { // Historial
+            categoriesElement.style.display = 'none';
+            productsSection.style.display = 'none';
+            historySection.style.display = 'block';
+        }
+    });
+});
+
+// --- 3. SCRIPT DE FILTRADO POR CATEGORÍAS ---
+categories.forEach(category => {
+    category.addEventListener('click', () => {
+        categories.forEach(c => c.classList.remove('active'));
+        category.classList.add('active');
+
+        const categoriaSeleccionada = category.textContent.trim().toLowerCase();
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            const nombreProducto = card.querySelector('h3').textContent.trim().toLowerCase();
+            
+            // Lógica de filtrado simple basada en texto
+            if (categoriaSeleccionada === 'todos') {
+                card.style.display = 'block';
+            } else if (categoriaSeleccionada === 'frutas' && nombreProducto.includes('fresas')) {
+                card.style.display = 'block';
+            } else if (categoriaSeleccionada === 'helados' && nombreProducto.includes('helado')) {
+                card.style.display = 'block';
+            } else if (categoriaSeleccionada === 'batidos' && nombreProducto.includes('batido')) {
+                card.style.display = 'block';
+            } else if (categoriaSeleccionada === 'queques' && nombreProducto.includes('queque')) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// --- 4. SCRIPT DE COMPRAS Y ACTUALIZACIÓN DE HISTORIAL ---
+// Mapeo automático de los botones "Agregar" actuales
+addButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        const card = e.target.closest('.card');
+        const nombre = card.querySelector('h3').textContent;
+        const textoPrecio = card.querySelector('.price').textContent;
+        
+        // Extraer el número del texto "₡2 500" -> 2500
+        const precio = parseInt(textoPrecio.replace(/[^\d]/g, ''), 10);
+
+        // Confirmación de la venta
+        const seguro = confirm(`¿Deseas registrar la venta de: ${nombre} por ${textoPrecio}?`);
+        
+        if (seguro) {
+            // Actualizar variables globales de control numérico
+            ventasHoy += precio;
+            transacciones += 1;
+            
+            // Calcular el ticket promedio
+            const promedio = Math.round(ventasHoy / transacciones);
+
+            // Actualizar la interfaz del Historial en pantalla
+            const boxes = document.querySelectorAll('.box');
+            
+            // Box 1: Ventas de Hoy
+            boxes[0].querySelector('.money').textContent = `₡${ventasHoy.toLocaleString('es-CR')}`;
+            boxes[0].querySelector('.small').textContent = `${transacciones} transacción${transacciones > 1 ? 'es' : ''}`;
+            
+            // Box 2: Total General (Para este examen simula el acumulado de hoy)
+            boxes[1].querySelector('.money').textContent = `₡${ventasHoy.toLocaleString('es-CR')}`;
+            boxes[1].querySelector('.small').textContent = `${transacciones} venta${transacciones > 1 ? 's' : ''} totale${transacciones > 1 ? 's' : 's'}`;
+            
+            // Box 3: Promedio por Venta
+            boxes[2].querySelector('.money').textContent = `₡${promedio.toLocaleString('es-CR')}`;
+
+            alert(`¡Venta registrada con éxito!\nProducto: ${nombre}`);
+        }
+    });
+});
+</script>
 
 </body>
 </html>
