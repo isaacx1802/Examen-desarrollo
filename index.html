@@ -33,13 +33,12 @@ body{
     flex-direction: column;
 }
 
-/* Clases auxiliares para ocultar/mostrar elementos con JavaScript */
 .hidden {
     display: none !important;
 }
 
-/* LOGIN */
-.login{
+/* LOGIN Y RECUPERACIÓN */
+.login, .recovery{
     padding:30px;
 }
 
@@ -56,7 +55,7 @@ body{
     margin:40px auto 20px;
 }
 
-.login h1{
+.login h1, .recovery h1{
     text-align:center;
     font-size:38px;
     margin-bottom:10px;
@@ -94,10 +93,16 @@ body{
     font-size:14px;
 }
 
-.extra a{
+.extra a, .back-link{
     color:#00c83a;
     text-decoration:none;
     font-weight:bold;
+    cursor:pointer;
+}
+
+.back-container {
+    text-align: center;
+    margin-top: 20px;
 }
 
 .btn{
@@ -220,7 +225,7 @@ body{
     cursor:pointer;
 }
 
-/* SECCIÓN NUEVA: CARRITO DE COMPRAS FLOTANTE */
+/* CARRITO */
 .cart-section {
     background: #fdfdfd;
     border-top: 2px solid #00c83a;
@@ -302,7 +307,6 @@ body{
 
 <div class="app">
 
-    <!-- LOGIN -->
     <section class="login" id="loginScreen">
         <div class="logo">🏪</div>
         <h1>Frutería Roger y Mari</h1>
@@ -322,30 +326,42 @@ body{
             <label>
                 <input type="checkbox" checked> Recordarme
             </label>
-            <a href="#" id="forgotPassword">¿Olvidaste tu contraseña?</a>
+            <a id="toRecoveryBtn">¿Olvidaste tu contraseña?</a>
         </div>
 
         <button class="btn" id="loginBtn">Iniciar Sesión →</button>
     </section>
 
-    <!-- CONTENIDO DE LA APP CONTROLLER (Oculto al inicio) -->
+    <section class="recovery hidden" id="recoveryScreen">
+        <div class="logo">🔑</div>
+        <h1>Recuperar</h1>
+        <p class="subtitle">Introduce tu correo para restablecer tu contraseña</p>
+
+        <div class="input-group">
+            <label>Correo electrónico</label>
+            <input type="email" id="recoveryEmailInput" placeholder="admin@rogerymari.com">
+        </div>
+
+        <button class="btn" id="sendRecoveryBtn">Enviar Enlace →</button>
+
+        <div class="back-container">
+            <a id="backToLoginBtn" class="back-link">← Regresar al Login</a>
+        </div>
+    </section>
+
     <div id="mainApp" class="hidden">
         
-        <!-- HEADER -->
         <div class="header">
             <h2 id="userNameDisplay">Mari</h2>
             <p>Sistema de Punto de Venta</p>
         </div>
 
-        <!-- TABS -->
         <div class="tabs">
             <div class="tab active" id="tabPOS">🛒 Punto de Venta</div>
             <div class="tab" id="tabHistory">📊 Historial</div>
         </div>
 
-        <!-- VISTA PUNTO DE VENTA -->
         <div id="viewPOS">
-            <!-- CATEGORÍAS (Se les añadió data-category para filtrarlas) -->
             <div class="categories">
                 <div class="category active" data-category="Todos">Todos</div>
                 <div class="category" data-category="Frutas">Frutas</div>
@@ -354,7 +370,6 @@ body{
                 <div class="category" data-category="Queques">Queques</div>
             </div>
 
-            <!-- PRODUCTOS (Se les añadió data-category y precios numéricos reales) -->
             <div class="products">
                 <div class="card" data-category="Frutas">
                     <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?q=80&w=1200&auto=format&fit=crop">
@@ -402,7 +417,6 @@ body{
                 </div>
             </div>
 
-            <!-- SECCIÓN DEL CARRITO ACTUAL -->
             <div class="cart-section">
                 <h4><span>Carrito Actual</span> <span id="cartTotalText">₡0</span></h4>
                 <div class="cart-items" id="cartContainer">
@@ -412,7 +426,6 @@ body{
             </div>
         </div>
 
-        <!-- VISTA HISTORIAL -->
         <div id="viewHistory" class="hidden">
             <div class="history">
                 <div class="box">
@@ -438,18 +451,22 @@ body{
     </div>
 </div>
 
-<!-- LÓGICA EN JAVASCRIPT -->
 <script>
-// --- Variables Globales del Estado de la App ---
 let cart = [];
 let salesHistory = [];
 
-// --- Elementos del DOM ---
+// DOM Elementos
 const loginScreen = document.getElementById('loginScreen');
+const recoveryScreen = document.getElementById('recoveryScreen');
 const mainApp = document.getElementById('mainApp');
+
 const loginBtn = document.getElementById('loginBtn');
-const forgotPassword = document.getElementById('forgotPassword');
+const toRecoveryBtn = document.getElementById('toRecoveryBtn');
+const backToLoginBtn = document.getElementById('backToLoginBtn');
+const sendRecoveryBtn = document.getElementById('sendRecoveryBtn');
+
 const emailInput = document.getElementById('emailInput');
+const recoveryEmailInput = document.getElementById('recoveryEmailInput');
 const userNameDisplay = document.getElementById('userNameDisplay');
 
 const tabPOS = document.getElementById('tabPOS');
@@ -465,39 +482,49 @@ const cartContainer = document.getElementById('cartContainer');
 const cartTotalText = document.getElementById('cartTotalText');
 const checkoutBtn = document.getElementById('checkoutBtn');
 
-// Variables de Métricas de Historial
 const todaySalesText = document.getElementById('todaySalesText');
 const todayCountText = document.getElementById('todayCountText');
 const totalSalesText = document.getElementById('totalSalesText');
 const totalCountText = document.getElementById('totalCountText');
 const averageSalesText = document.getElementById('averageSalesText');
 
+// --- Flujo de Navegación de Login / Recuperación ---
+toRecoveryBtn.addEventListener('click', () => {
+    loginScreen.classList.add('hidden');
+    recoveryScreen.classList.remove('hidden');
+});
 
-// --- 1. Sistema de Sesión (Login) ---
+backToLoginBtn.addEventListener('click', () => {
+    recoveryScreen.classList.add('hidden');
+    loginScreen.classList.remove('hidden');
+});
+
+sendRecoveryBtn.addEventListener('click', () => {
+    const email = recoveryEmailInput.value.trim();
+    if(email === "") {
+        alert("Por favor introduce un correo válido.");
+        return;
+    }
+    alert("Se ha enviado un enlace de recuperación a: " + email);
+    recoveryScreen.classList.add('hidden');
+    loginScreen.classList.remove('hidden');
+});
+
 loginBtn.addEventListener('click', () => {
     const email = emailInput.value.trim();
     if(email === "") {
         alert("Por favor introduce un correo válido.");
         return;
     }
-    
-    // Extraer el nombre del correo para personalizar la bienvenida
     let name = email.split('@')[0];
     name = name.charAt(0).toUpperCase() + name.slice(1);
     userNameDisplay.textContent = name;
     
-    // Cambiar de pantalla
     loginScreen.classList.add('hidden');
     mainApp.classList.remove('hidden');
 });
 
-forgotPassword.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert("Se ha enviado un enlace de recuperación a: " + (emailInput.value || "tu correo registrado."));
-});
-
-
-// --- 2. Navegación de Pestañas (Tabs) ---
+// --- Pestañas ---
 tabPOS.addEventListener('click', () => {
     tabPOS.classList.add('active');
     tabHistory.classList.remove('active');
@@ -510,20 +537,16 @@ tabHistory.addEventListener('click', () => {
     tabPOS.classList.remove('active');
     viewHistory.classList.remove('hidden');
     viewPOS.classList.add('hidden');
-    updateHistoryUI(); // Actualizar métricas al entrar a la pestaña
+    updateHistoryUI();
 });
 
-
-// --- 3. Filtro por Categorías ---
+// --- Categorías ---
 categories.forEach(categoryBtn => {
     categoryBtn.addEventListener('click', () => {
-        // Cambiar clase activa en los botones de categorías
         categories.forEach(btn => btn.classList.remove('active'));
         categoryBtn.classList.add('active');
-        
         const selectedCategory = categoryBtn.getAttribute('data-category');
         
-        // Filtrar las tarjetas de productos
         productCards.forEach(card => {
             const cardCategory = card.getAttribute('data-category');
             if (selectedCategory === "Todos" || cardCategory === selectedCategory) {
@@ -535,21 +558,17 @@ categories.forEach(categoryBtn => {
     });
 });
 
-
-// --- 4. Gestión del Carrito (Agregar Productos) ---
+// --- Carrito ---
 addButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         const name = btn.getAttribute('data-name');
         const price = parseInt(btn.getAttribute('data-price'));
-        
-        // Verificar si el producto ya está en el carrito
         const existingProduct = cart.find(item => item.name === name);
         if(existingProduct) {
             existingProduct.quantity += 1;
         } else {
             cart.push({ name: name, price: price, quantity: 1 });
         }
-        
         updateCartUI();
     });
 });
@@ -561,63 +580,42 @@ function updateCartUI() {
         checkoutBtn.disabled = true;
         return;
     }
-    
     cartContainer.innerHTML = "";
     let total = 0;
-    
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
-        
         const itemRow = document.createElement('div');
         itemRow.className = "cart-item";
-        itemRow.innerHTML = `
-            <span>${item.name} (x${item.quantity})</span>
-            <strong>₡${itemTotal.toLocaleString('es-CR')}</strong>
-        `;
+        itemRow.innerHTML = `<span>${item.name} (x${item.quantity})</span><strong>₡${itemTotal.toLocaleString('es-CR')}</strong>`;
         cartContainer.appendChild(itemRow);
     });
-    
     cartTotalText.textContent = `₡${total.toLocaleString('es-CR')}`;
     checkoutBtn.disabled = false;
 }
 
-
-// --- 5. Método de Compra (Cobrar Venta) ---
+// --- Cobrar ---
 checkoutBtn.addEventListener('click', () => {
     if(cart.length === 0) return;
-    
-    // Calcular total de la compra actual
     const totalVenta = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
-    // Guardar en el historial
     salesHistory.push(totalVenta);
-    
-    // Notificación de éxito
     alert(`¡Venta cobrada con éxito!\nTotal: ₡${totalVenta.toLocaleString('es-CR')}`);
-    
-    // Limpiar carrito
     cart = [];
     updateCartUI();
 });
 
-
-// --- 6. Actualización del Historial Financiero ---
+// --- Historial UI ---
 function updateHistoryUI() {
     const totalTransacciones = salesHistory.length;
     const totalDinero = salesHistory.reduce((sum, current) => sum + current, 0);
     const promedio = totalTransacciones > 0 ? Math.round(totalDinero / totalTransacciones) : 0;
     
-    // Como es una simulación local, usaremos los mismos datos para 'Hoy' y 'Total General'
     todaySalesText.textContent = `₡${totalDinero.toLocaleString('es-CR')}`;
     todayCountText.textContent = `${totalTransacciones} transacciones`;
-    
     totalSalesText.textContent = `₡${totalDinero.toLocaleString('es-CR')}`;
     totalCountText.textContent = `${totalTransacciones} ventas totales`;
-    
     averageSalesText.textContent = `₡${promedio.toLocaleString('es-CR')}`;
 }
-
 </script>
 </body>
 </html>
