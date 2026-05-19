@@ -1,0 +1,461 @@
+   <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Frutería Roger y Mari</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#e9e9e9;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+}
+
+.app{
+    width:390px;
+    background:white;
+
+    min-height:100vh;
+    border-radius:30px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+}
+
+/* LOGIN */
+
+.login{
+    padding:30px;
+}
+
+.logo{
+    width:90px;
+    height:90px;
+    background:#00c83a;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:40px;
+    margin:40px auto 20px;
+}
+
+.login h1{
+    text-align:center;
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:40px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.input-group input{
+    width:100%;
+    padding:18px;
+    border-radius:15px;
+    border:2px solid #ddd;
+    font-size:16px;
+}
+
+.extra{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+.extra a{
+    color:#00c83a;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:15px;
+    background:#00c83a;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* HEADER */
+
+.header{
+    background:#00c83a;
+    color:white;
+    padding:25px;
+}
+
+.header h2{
+    font-size:32px;
+}
+
+.header p{
+    margin-top:5px;
+    font-size:18px;
+}
+
+/* TABS */
+
+.tabs{
+    display:flex;
+    background:#f1f1f1;
+    margin:20px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.tab{
+    flex:1;
+    padding:15px;
+    text-align:center;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.tab.active{
+    background:white;
+}
+
+/* CATEGORÍAS */
+
+.categories{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    padding:0 20px 20px;
+}
+
+.category{
+    background:#f5f5f5;
+    padding:15px 28px;
+    border-radius:15px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.category.active{
+    background:#00c83a;
+    color:white;
+    font-weight:bold;
+}
+
+/* PRODUCTOS */
+
+.products{
+    padding:20px;
+}
+
+.card{
+    border:1px solid #ececec;
+    border-radius:25px;
+    overflow:hidden;
+    margin-bottom:30px;
+    background:white;
+}
+
+.card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card h3{
+    font-size:34px;
+    margin-bottom:15px;
+}
+
+.price{
+    color:#00c83a;
+    font-size:42px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.add-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:15px;
+    background:#00c83a;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* HISTORIAL */
+
+.history{
+    padding:20px;
+}
+
+.box{
+    border:1px solid #e7e7e7;
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.box h4{
+    font-size:28px;
+    margin-bottom:30px;
+}
+
+.money{
+    color:#00c83a;
+    font-size:45px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.small{
+    color:#666;
+    font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- LOGIN -->
+
+    <section class="login">
+
+        <div class="logo">🏪</div>
+
+        <h1>Frutería Roger y Mari</h1>
+
+        <p class="subtitle">
+            Ingresa al sistema de Punto de Venta
+        </p>
+
+        <div class="input-group">
+            <label>Correo electrónico</label>
+            <input type="email" placeholder="admin@rogerymari.com">
+        </div>
+
+        <div class="input-group">
+            <label>Contraseña</label>
+            <input type="password" placeholder="********">
+        </div>
+
+        <div class="extra">
+            <label>
+                <input type="checkbox">
+                Recordarme
+            </label>
+
+            <a href="#">
+                ¿Olvidaste tu contraseña?
+            </a>
+        </div>
+
+        <button class="btn">
+            Iniciar Sesión →
+        </button>
+
+    </section>
+
+    <!-- HEADER -->
+
+    <div class="header">
+        <h2>Mari</h2>
+        <p>Sistema de Punto de Venta</p>
+    </div>
+
+    <!-- TABS -->
+
+    <div class="tabs">
+        <div class="tab active">🛒 Punto de Venta</div>
+        <div class="tab">📊 Historial</div>
+    </div>
+
+    <!-- CATEGORÍAS -->
+
+    <div class="categories">
+        <div class="category">Todos</div>
+        <div class="category">Frutas</div>
+        <div class="category">Helados</div>
+        <div class="category active">Batidos</div>
+        <div class="category">Queques</div>
+    </div>
+
+    <!-- PRODUCTOS -->
+
+    <div class="products">
+
+        <!-- FRESAS -->
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <h3>Fresas</h3>
+
+                <div class="price">₡2 500</div>
+
+                <button class="add-btn">
+                    + Agregar
+                </button>
+
+            </div>
+        </div>
+
+        <!-- HELADO -->
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <h3>Helado de Menta Chips</h3>
+
+                <div class="price">₡1 500</div>
+
+                <button class="add-btn">
+                    + Agregar
+                </button>
+
+            </div>
+        </div>
+
+        <!-- QUEQUE -->
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <h3>Queque de Chocolate</h3>
+
+                <div class="price">₡3 500</div>
+
+                <button class="add-btn">
+                    + Agregar
+                </button>
+
+            </div>
+        </div>
+
+        <!-- BATIDO DE FRESA -->
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <h3>Batido de Fresa</h3>
+
+                <div class="price">₡2 500</div>
+
+                <button class="add-btn">
+                    + Agregar
+                </button>
+
+            </div>
+        </div>
+
+        <!-- BATIDO VERDE -->
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="card-content">
+
+                <h3>Batido Verde</h3>
+
+                <div class="price">₡3 000</div>
+
+                <button class="add-btn">
+                    + Agregar
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- HISTORIAL -->
+
+    <div class="history">
+
+        <div class="box">
+
+            <h4>Ventas de Hoy</h4>
+
+            <div class="money">₡0</div>
+
+            <div class="small">
+                0 transacciones
+            </div>
+
+        </div>
+
+        <div class="box">
+
+            <h4>Total General</h4>
+
+            <div class="money">₡0</div>
+
+            <div class="small">
+                0 ventas totales
+            </div>
+
+        </div>
+
+        <div class="box">
+
+            <h4>Promedio por Venta</h4>
+
+            <div class="money">₡0</div>
+
+            <div class="small">
+                Ticket promedio
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
